@@ -6,12 +6,17 @@ import com.clussmanproductions.trafficcontrol.block.entity.BellBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -21,6 +26,8 @@ import net.minecraft.world.World;
  * redstone power, replacing the original ImmersiveRailroading-driven trigger.
  */
 public class BellBlock extends Block implements BlockEntityProvider {
+	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+
 	private static final VoxelShape SHAPE = createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
 
 	private final SoundEvent sound;
@@ -28,10 +35,21 @@ public class BellBlock extends Block implements BlockEntityProvider {
 	public BellBlock(Settings settings, SoundEvent sound) {
 		super(settings);
 		this.sound = sound;
+		setDefaultState(getDefaultState().with(FACING, Direction.NORTH));
 	}
 
 	public SoundEvent getSound() {
 		return sound;
+	}
+
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(FACING);
+	}
+
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 	}
 
 	@Override

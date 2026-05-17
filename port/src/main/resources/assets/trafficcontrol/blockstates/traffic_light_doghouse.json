@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "trafficcontrol:block/traffic_light_doghouse"
+    },
+    "facing=east": {
+      "model": "trafficcontrol:block/traffic_light_doghouse",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "trafficcontrol:block/traffic_light_doghouse",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "trafficcontrol:block/traffic_light_doghouse",
+      "y": 270
     }
   }
 }

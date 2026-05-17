@@ -8,6 +8,7 @@ import java.util.Map;
 import com.clussmanproductions.trafficcontrol.block.BellBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingGateBlock;
 import com.clussmanproductions.trafficcontrol.block.StreetLightBlock;
+import com.clussmanproductions.trafficcontrol.block.TcHorizontalBlock;
 import com.clussmanproductions.trafficcontrol.block.WigWagBlock;
 
 import net.minecraft.block.AbstractBlock;
@@ -80,7 +81,7 @@ public final class ModBlocks {
 			case "safetran_mechanical":
 				return new BellBlock(settingsFor(name), ModSounds.SAFETRAN_MECHANICAL);
 			default:
-				return new Block(settingsFor(name));
+				return new TcHorizontalBlock(settingsFor(name));
 		}
 	}
 

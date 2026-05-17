@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "trafficcontrol:block/type_3_barrier_bars"
+    },
+    "facing=east": {
+      "model": "trafficcontrol:block/type_3_barrier_bars",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "trafficcontrol:block/type_3_barrier_bars",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "trafficcontrol:block/type_3_barrier_bars",
+      "y": 270
     }
   }
 }

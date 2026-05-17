@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "trafficcontrol:block/horizontal_pole"
+    },
+    "facing=east": {
+      "model": "trafficcontrol:block/horizontal_pole",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "trafficcontrol:block/horizontal_pole",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "trafficcontrol:block/horizontal_pole",
+      "y": 270
     }
   }
 }
