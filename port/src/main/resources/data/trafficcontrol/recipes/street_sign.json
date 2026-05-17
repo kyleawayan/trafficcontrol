@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "i"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:oak_sign"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "trafficcontrol:street_sign",
+    "count": 1
+  }
+}

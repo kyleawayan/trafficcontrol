@@ -1,0 +1,6 @@
+{
+  "parent": "trafficcontrol:item/traffic_light_bulb",
+  "textures": {
+    "lampTex": "trafficcontrol:block/yellow_arrow_left"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    " L "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "trafficcontrol:traffic_rail",
+    "count": 4
+  }
+}

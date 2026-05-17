@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " O ",
+    "WWW",
+    "CCC"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:orange_terracotta"
+    },
+    "W": {
+      "item": "minecraft:white_terracotta"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "trafficcontrol:cone",
+    "count": 8
+  }
+}

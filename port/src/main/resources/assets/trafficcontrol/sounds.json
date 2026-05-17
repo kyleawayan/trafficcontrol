@@ -1,0 +1,42 @@
+{
+    "gate": 
+    {
+        "category": "block",
+        "sounds": [ "trafficcontrol:gate" ]
+    },
+    "screwdriver": 
+    {
+        "category": "block",
+        "sounds": [ "trafficcontrol:screwdriver" ]
+    },
+    "safetran_type_3":
+    {
+        "category": "block",
+        "sounds": [ "trafficcontrol:safetran_type_3" ]
+    },
+    "safetran_mechanical":
+    {
+        "category": "block",
+        "sounds": [ "trafficcontrol:safetran_mechanical" ]
+    },
+    "wch":
+    {
+    	"category": "block",
+    	"sounds": [ "trafficcontrol:wch" ]
+    },
+    "wch_mechanical_bell":
+    {
+    	"category": "block",
+    	"sounds": [ "trafficcontrol:wch_mechanical_bell" ]
+    },
+	"ped_button":
+    {
+    	"category": "block",
+    	"sounds": [ "trafficcontrol:ped_button" ]
+    },
+    "wigwag":
+    { 
+    	"category": "block",
+    	"sounds": [ "trafficcontrol:wig_wag" ]
+    }
+}

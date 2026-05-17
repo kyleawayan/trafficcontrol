@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "trafficcontrol:block/traffic_sensor_right"
+    }
+  }
+}

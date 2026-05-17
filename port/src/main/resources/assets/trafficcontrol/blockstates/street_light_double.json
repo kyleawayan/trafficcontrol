@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "trafficcontrol:block/street_light_double"
+    }
+  }
+}

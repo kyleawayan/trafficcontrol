@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "trafficcontrol",
+	"version": "${version}",
+	"name": "Traffic Control",
+	"description": "Traffic signals, signs, crossing gates and road infrastructure. A Fabric 1.20.4 rewrite of CSX8600's Traffic Control.",
+	"authors": [
+		"Kyle (@serenity__ka)",
+		"CSX8600 (original 1.12.2 mod)"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/traffic-control",
+		"sources": "https://github.com/kyleawayan/trafficcontrol"
+	},
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.clussmanproductions.trafficcontrol.TrafficControl"
+		],
+		"client": [
+			"com.clussmanproductions.trafficcontrol.client.TrafficControlClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}

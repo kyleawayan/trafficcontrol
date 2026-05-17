@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "trafficcontrol:block/horizontal_pole"
+    }
+  }
+}

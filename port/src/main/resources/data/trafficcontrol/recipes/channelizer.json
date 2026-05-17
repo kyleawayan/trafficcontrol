@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " O ",
+    " W ",
+    " C "
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:orange_terracotta"
+    },
+    "W": {
+      "item": "minecraft:white_terracotta"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "trafficcontrol:channelizer",
+    "count": 8
+  }
+}
