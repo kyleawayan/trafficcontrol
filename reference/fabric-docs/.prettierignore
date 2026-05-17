@@ -1,0 +1,6 @@
+.vitepress/sidebars/versioned
+pnpm-lock.yaml
+reference/*.*
+reference/latest/src/main/generated
+translated
+versions
