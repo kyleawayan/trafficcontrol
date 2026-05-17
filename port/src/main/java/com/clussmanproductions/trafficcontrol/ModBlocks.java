@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.clussmanproductions.trafficcontrol.block.BellBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingGateBlock;
 import com.clussmanproductions.trafficcontrol.block.StreetLightBlock;
 import com.clussmanproductions.trafficcontrol.block.WigWagBlock;
@@ -70,6 +71,14 @@ public final class ModBlocks {
 				return new CrossingGateBlock(settingsFor(name));
 			case "wig_wag":
 				return new WigWagBlock(settingsFor(name));
+			case "wch_bell":
+				return new BellBlock(settingsFor(name), ModSounds.WCH);
+			case "wch_mechanical_bell":
+				return new BellBlock(settingsFor(name), ModSounds.WCH_MECHANICAL_BELL);
+			case "safetran_type_3":
+				return new BellBlock(settingsFor(name), ModSounds.SAFETRAN_TYPE_3);
+			case "safetran_mechanical":
+				return new BellBlock(settingsFor(name), ModSounds.SAFETRAN_MECHANICAL);
 			default:
 				return new Block(settingsFor(name));
 		}

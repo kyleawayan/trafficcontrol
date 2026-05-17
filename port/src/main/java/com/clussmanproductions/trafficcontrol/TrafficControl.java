@@ -10,6 +10,7 @@ public class TrafficControl implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModSounds.register();
 		ModBlocks.register();
 		ModItems.register();
 		ModBlockEntities.register();

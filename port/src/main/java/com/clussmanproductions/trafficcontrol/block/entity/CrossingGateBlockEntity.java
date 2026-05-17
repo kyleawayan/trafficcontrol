@@ -22,9 +22,14 @@ public class CrossingGateBlockEntity extends BlockEntity {
 	private static final float LOWERED = 0.0F;
 	private static final int CLOSE_DELAY_TICKS = 80;
 
+	/** Installed by the client entrypoint to start/stop the motor sound. */
+	public static java.util.function.Consumer<CrossingGateBlockEntity> SOUND_HOOK = be -> {};
+
 	private boolean closed;
 	private float gateAngle = RAISED;
 	private int closeDelay;
+	/** Client-only handle to the active looping motor sound. */
+	public Object clientSound;
 
 	public CrossingGateBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.CROSSING_GATE, pos, state);
@@ -32,6 +37,14 @@ public class CrossingGateBlockEntity extends BlockEntity {
 
 	public float getGateAngle() {
 		return gateAngle;
+	}
+
+	/** True while the gate arm is actively raising or lowering. */
+	public boolean isMoving() {
+		if (closed) {
+			return closeDelay >= CLOSE_DELAY_TICKS && gateAngle < LOWERED;
+		}
+		return gateAngle > RAISED;
 	}
 
 	public void setClosed(boolean closed) {
@@ -60,6 +73,7 @@ public class CrossingGateBlockEntity extends BlockEntity {
 				be.gateAngle = Math.max(RAISED, be.gateAngle - 0.5F);
 			}
 		}
+		SOUND_HOOK.accept(be);
 	}
 
 	@Override

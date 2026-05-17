@@ -1,5 +1,6 @@
 package com.clussmanproductions.trafficcontrol;
 
+import com.clussmanproductions.trafficcontrol.block.entity.BellBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.CrossingGateBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.StreetLightBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.WigWagBlockEntity;
@@ -15,6 +16,7 @@ public final class ModBlockEntities {
 	public static BlockEntityType<StreetLightBlockEntity> STREET_LIGHT;
 	public static BlockEntityType<WigWagBlockEntity> WIG_WAG;
 	public static BlockEntityType<CrossingGateBlockEntity> CROSSING_GATE;
+	public static BlockEntityType<BellBlockEntity> BELL;
 
 	public static void register() {
 		STREET_LIGHT = register("street_light",
@@ -32,6 +34,14 @@ public final class ModBlockEntities {
 			BlockEntityType.Builder.<CrossingGateBlockEntity>create(
 				CrossingGateBlockEntity::new,
 				ModBlocks.BY_NAME.get("crossing_gate_gate")));
+
+		BELL = register("bell",
+			BlockEntityType.Builder.<BellBlockEntity>create(
+				BellBlockEntity::new,
+				ModBlocks.BY_NAME.get("wch_bell"),
+				ModBlocks.BY_NAME.get("wch_mechanical_bell"),
+				ModBlocks.BY_NAME.get("safetran_type_3"),
+				ModBlocks.BY_NAME.get("safetran_mechanical")));
 	}
 
 	private static <T extends net.minecraft.block.entity.BlockEntity> BlockEntityType<T> register(

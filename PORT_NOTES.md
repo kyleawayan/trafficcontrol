@@ -55,6 +55,12 @@ the short commit SHA.
   **redstone-driven**: a powered crossing gate lowers its arm (and raises it
   when unpowered); a powered wig wag swings its banner. The moving angle is
   animated client-side; the powered flag is server-authoritative and synced.
+- **Sounds** are wired up (`ModSounds` registers the eight sound events from
+  `sounds.json`). The wig wag rings its bell each time the banner passes a
+  side; the crossing gate loops a motor sound while the arm moves; and the
+  four bell blocks (`wch_bell`, `wch_mechanical_bell`, `safetran_type_3`,
+  `safetran_mechanical`) are `BellBlock`s that loop their ring while powered
+  by redstone. Looping sounds use a client-side `LoopingSoundInstance`.
 
 ## TODO(ka) — deferred behavior
 
@@ -71,6 +77,8 @@ the short commit SHA.
   The traffic lights have real 3D models and only lack rotation/animation.
   `street_sign` still renders as a flat icon — it needs the sign-pack data
   system + GUI. `TcBoxRenderer` is a reusable box-drawing helper for the rest.
+  The bell blocks have sound but no swinging-bell animation, and the
+  pedestrian button / screwdriver sounds are registered but not yet triggered.
 - **Automation.** Traffic-light control-box state machine, its `ScreenHandler`
   /`Screen` GUI, traffic sensors, pedestrian buttons, crossing-gate animation
   and bells are not ported. Crossing/relay automation is to be redstone-driven.

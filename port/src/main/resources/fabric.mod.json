@@ -5,7 +5,7 @@
 	"name": "Traffic Control",
 	"description": "Traffic signals, signs, crossing gates and road infrastructure. A Fabric 1.20.4 rewrite of CSX8600's Traffic Control.",
 	"authors": [
-		"Kyle (@serenity__ka)",
+		"Kyle Awayan",
 		"CSX8600 (original 1.12.2 mod)"
 	],
 	"contact": {

@@ -13,7 +13,7 @@ the original art assets. It is not affiliated with the original author.
 
 - **CSX8600** — original Traffic Control mod
   ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/traffic-control)).
-- Fabric 1.20.4 rewrite by Kyle (@serenity__ka).
+- Fabric 1.20.4 rewrite by Kyle Awayan.
 
 ## Building
 

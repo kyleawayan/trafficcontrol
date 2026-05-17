@@ -1,8 +1,10 @@
 package com.clussmanproductions.trafficcontrol.block.entity;
 
 import com.clussmanproductions.trafficcontrol.ModBlockEntities;
+import com.clussmanproductions.trafficcontrol.ModSounds;
 
 import net.minecraft.block.Block;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -63,6 +65,12 @@ public class WigWagBlockEntity extends BlockEntity {
 			}
 		}
 		be.swingAngle += be.swingDirection * 4;
+
+		// Ring the bell as the banner passes each side, matching the original.
+		if (be.active && ((be.swingAngle == 16 && be.swingDirection == 1)
+				|| (be.swingAngle == -16 && be.swingDirection == -1))) {
+			world.playSound(null, pos, ModSounds.WIG_WAG, SoundCategory.BLOCKS, 4.0F, 1.0F);
+		}
 	}
 
 	@Override
