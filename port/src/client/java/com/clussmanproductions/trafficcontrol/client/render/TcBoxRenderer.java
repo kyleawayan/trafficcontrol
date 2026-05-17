@@ -1,19 +1,24 @@
 package com.clussmanproductions.trafficcontrol.client.render;
 
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 /**
- * Draws axis-aligned boxes into a {@code VertexConsumer}, porting the original
- * mod's box helpers. Coordinates and UV rectangles are in model pixels (16 per
- * block). Faces are emitted double-sided so they are visible regardless of the
- * render layer's culling.
+ * Draws axis-aligned boxes, porting the original mod's box helpers. Coordinates
+ * and UV rectangles are in model pixels (16 per block). Faces are emitted
+ * double-sided so they are visible regardless of the render layer's culling.
  *
- * <p>The original used two vertex orderings: {@code box} matches
- * {@code getVertexPoints} (wig wags, crossing gates) and {@code boxFixed}
- * matches {@code getFixedVertexPoints} (street lights).
+ * <p>The buffer is fetched from the {@code VertexConsumerProvider} on every
+ * call: a cached {@code VertexConsumer} would be invalidated the moment another
+ * render layer is requested, which would draw every box with the last layer's
+ * texture.
+ *
+ * <p>{@code box} matches {@code getVertexPoints} (wig wags, crossing gates) and
+ * {@code boxFixed} matches {@code getFixedVertexPoints} (street lights).
  */
 public final class TcBoxRenderer {
 	private TcBoxRenderer() {}
@@ -29,14 +34,16 @@ public final class TcBoxRenderer {
 	// Face -> index into the south/up/north/down/east/west UV array.
 	private static final int[] FACE_TEX = {2, 1, 0, 3, 4, 5};
 
-	public static void box(MatrixStack matrices, VertexConsumer vc, int light, int overlay,
-			double x, double y, double z, double w, double h, double d, float[]... faces) {
-		draw(matrices, vc, light, overlay, x, y, z, w, h, d, false, faces);
+	public static void box(MatrixStack matrices, VertexConsumerProvider vcp, RenderLayer layer,
+			int light, int overlay, double x, double y, double z, double w, double h, double d,
+			float[]... faces) {
+		draw(matrices, vcp.getBuffer(layer), light, overlay, x, y, z, w, h, d, false, faces);
 	}
 
-	public static void boxFixed(MatrixStack matrices, VertexConsumer vc, int light, int overlay,
-			double x, double y, double z, double w, double h, double d, float[]... faces) {
-		draw(matrices, vc, light, overlay, x, y, z, w, h, d, true, faces);
+	public static void boxFixed(MatrixStack matrices, VertexConsumerProvider vcp, RenderLayer layer,
+			int light, int overlay, double x, double y, double z, double w, double h, double d,
+			float[]... faces) {
+		draw(matrices, vcp.getBuffer(layer), light, overlay, x, y, z, w, h, d, true, faces);
 	}
 
 	private static void draw(MatrixStack matrices, VertexConsumer vc, int light, int overlay,
