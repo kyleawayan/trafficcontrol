@@ -1,6 +1,51 @@
 {
   "variants": {
-    "": {
+    "rotation=0": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=1": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=2": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=3": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=4": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=5": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=6": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=7": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=8": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=9": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=10": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=11": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=12": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=13": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=14": {
+      "model": "trafficcontrol:block/crossing_gate_gate"
+    },
+    "rotation=15": {
       "model": "trafficcontrol:block/crossing_gate_gate"
     }
   }

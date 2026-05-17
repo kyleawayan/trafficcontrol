@@ -2,7 +2,9 @@ package com.clussmanproductions.trafficcontrol.client;
 
 import com.clussmanproductions.trafficcontrol.ModBlockEntities;
 import com.clussmanproductions.trafficcontrol.ModBlocks;
+import com.clussmanproductions.trafficcontrol.client.render.CrossingGateBlockEntityRenderer;
 import com.clussmanproductions.trafficcontrol.client.render.StreetLightBlockEntityRenderer;
+import com.clussmanproductions.trafficcontrol.client.render.WigWagBlockEntityRenderer;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.block.Block;
@@ -21,5 +23,9 @@ public final class ModRenderers {
 
 		BlockEntityRendererFactories.register(
 			ModBlockEntities.STREET_LIGHT, StreetLightBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(
+			ModBlockEntities.WIG_WAG, WigWagBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(
+			ModBlockEntities.CROSSING_GATE, CrossingGateBlockEntityRenderer::new);
 	}
 }

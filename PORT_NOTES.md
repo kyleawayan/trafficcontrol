@@ -48,6 +48,13 @@ the short commit SHA.
   and lamp(s) are emitted box-for-box from the original TESR. Rotation is set
   from player yaw on placement. The block emits light directly (luminance 15)
   instead of the original's multi-block `light_source` placement.
+- **Crossing gate** and **wig wag** (lower quadrant) are ported as animated
+  block entities (`CrossingGateBlock`, `WigWagBlock` — invisible blocks with a
+  16-way `rotation` property). Their renderers draw the static housing model
+  plus the moving parts box-for-box from the original TESRs. The animation is
+  **redstone-driven**: a powered crossing gate lowers its arm (and raises it
+  when unpowered); a powered wig wag swings its banner. The moving angle is
+  animated client-side; the powered flag is server-authoritative and synced.
 
 ## TODO(ka) — deferred behavior
 
@@ -57,14 +64,13 @@ the short commit SHA.
   lights / signs / crossing gates / wig wags. Not yet implemented.
 - **VoxelShape hitboxes.** Decorative blocks (cone, drum, etc.) currently use a
   full-cube selection/collision box. The original supplied custom shapes.
-- **Block entities + renderers.** Street lights are ported (see above). The
-  remaining ~30 TileEntities and renderers (signs, traffic lights, crossing
-  gates, wig wags, bells) are not ported; their blocks are registered as
-  static blocks for now. `street_sign`, `street_light_*` and the traffic
-  lights are the blocks that still render as a flat item icon — `street_sign`
-  needs the sign-pack data system + GUI; the traffic lights have real 3D
-  models and only lack rotation/animation. `TcBoxRenderer` is a reusable
-  box-drawing helper for porting the rest.
+- **Block entities + renderers.** Street lights, the crossing gate and the
+  lower-quadrant wig wag are ported (see above). Still not ported: the
+  upper-quadrant wig wag (`vertical_wig_wag` — its arm is a separate baked
+  model, needing a different render path), traffic lights, bells, and signs.
+  The traffic lights have real 3D models and only lack rotation/animation.
+  `street_sign` still renders as a flat icon — it needs the sign-pack data
+  system + GUI. `TcBoxRenderer` is a reusable box-drawing helper for the rest.
 - **Automation.** Traffic-light control-box state machine, its `ScreenHandler`
   /`Screen` GUI, traffic sensors, pedestrian buttons, crossing-gate animation
   and bells are not ported. Crossing/relay automation is to be redstone-driven.

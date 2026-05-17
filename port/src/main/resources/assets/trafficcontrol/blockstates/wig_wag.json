@@ -1,6 +1,51 @@
 {
   "variants": {
-    "": {
+    "rotation=0": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=1": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=2": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=3": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=4": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=5": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=6": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=7": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=8": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=9": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=10": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=11": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=12": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=13": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=14": {
+      "model": "trafficcontrol:block/wig_wag"
+    },
+    "rotation=15": {
       "model": "trafficcontrol:block/wig_wag"
     }
   }

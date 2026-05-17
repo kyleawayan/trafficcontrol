@@ -5,7 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.clussmanproductions.trafficcontrol.block.CrossingGateBlock;
 import com.clussmanproductions.trafficcontrol.block.StreetLightBlock;
+import com.clussmanproductions.trafficcontrol.block.WigWagBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -64,6 +66,10 @@ public final class ModBlocks {
 				return new StreetLightBlock(settingsFor(name), false);
 			case "street_light_double":
 				return new StreetLightBlock(settingsFor(name), true);
+			case "crossing_gate_gate":
+				return new CrossingGateBlock(settingsFor(name));
+			case "wig_wag":
+				return new WigWagBlock(settingsFor(name));
 			default:
 				return new Block(settingsFor(name));
 		}

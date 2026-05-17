@@ -65,10 +65,10 @@ public class StreetLightBlockEntityRenderer implements BlockEntityRenderer<Stree
 		VertexConsumer lamp = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(YELLOW));
 
 		// Post.
-		TcBoxRenderer.box(matrices, metal, light, overlay, 6, 0, 6, 4, 16, 4, POST_THICK);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 6, 16, 6, 4, 16, 4, POST_THICK);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 7, 32, 7, 2, 16, 2, POST_THIN);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 7, 48, 7, 2, 16, 2, POST_THIN);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 6, 0, 6, 4, 16, 4, POST_THICK);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 6, 16, 6, 4, 16, 4, POST_THICK);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 7, 32, 7, 2, 16, 2, POST_THIN);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 7, 48, 7, 2, 16, 2, POST_THIN);
 
 		// Arm + lamp (+Z side).
 		armAndLamp(matrices, metal, lamp, light, overlay, 23.2, 25.2, 38.2, 26.2);
@@ -80,12 +80,12 @@ public class StreetLightBlockEntityRenderer implements BlockEntityRenderer<Stree
 		// Angled support strut(s).
 		matrices.translate(0.4375, 3.75, 0.5625);
 		matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-20));
-		TcBoxRenderer.box(matrices, metal, light, overlay, 0, 0, 0, 2, 2, 16, ARM);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 0, 0, 0, 2, 2, 16, ARM);
 		if (dbl) {
 			matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(20));
 			matrices.translate(0, 0.34375, -1.0625);
 			matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(20));
-			TcBoxRenderer.box(matrices, metal, light, overlay, 0, 0, 0, 2, 2, 16, ARM);
+			TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 0, 0, 0, 2, 2, 16, ARM);
 		}
 
 		matrices.pop();
@@ -93,12 +93,12 @@ public class StreetLightBlockEntityRenderer implements BlockEntityRenderer<Stree
 
 	private static void armAndLamp(MatrixStack matrices, VertexConsumer metal, VertexConsumer lamp,
 			int light, int overlay, double armZ, double railZ, double endCapZ, double lampZ) {
-		TcBoxRenderer.box(matrices, metal, light, overlay, 7, 65.35, armZ, 2, 2, 16, ARM);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 5, 64.35, railZ, 1, 1, 14, ARM);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 10, 64.35, railZ, 1, 1, 14, ARM);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 6, 64.35, railZ, 4, 1, 1, ARM);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 6, 64.35, endCapZ, 4, 1, 1, ARM);
-		TcBoxRenderer.box(matrices, metal, light, overlay, 6, 65.34, railZ, 4, 0, 14, ARM);
-		TcBoxRenderer.box(matrices, lamp, LAMP_LIGHT, overlay, 7, 64.83, lampZ, 2, 0.5, 12, LAMP);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 7, 65.35, armZ, 2, 2, 16, ARM);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 5, 64.35, railZ, 1, 1, 14, ARM);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 10, 64.35, railZ, 1, 1, 14, ARM);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 6, 64.35, railZ, 4, 1, 1, ARM);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 6, 64.35, endCapZ, 4, 1, 1, ARM);
+		TcBoxRenderer.boxFixed(matrices, metal, light, overlay, 6, 65.34, railZ, 4, 0, 14, ARM);
+		TcBoxRenderer.boxFixed(matrices, lamp, LAMP_LIGHT, overlay, 7, 64.83, lampZ, 2, 0.5, 12, LAMP);
 	}
 }
