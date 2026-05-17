@@ -40,6 +40,14 @@ the short commit SHA.
   models, each with a `BlockItem`.
 - 11 items registered (`ModItems`) as plain items.
 - Creative tab `Traffic Control` (`ModItemGroups`) holds all blocks and items.
+- All blocks render on the cutout layer (`ModRenderers`) so transparent texture
+  regions are not drawn opaque.
+- **Street lights** (single + double) are ported: a `StreetLightBlock`
+  (`BlockEntityProvider`, 16-way `rotation` property, invisible block model)
+  drawn by `StreetLightBlockEntityRenderer` — the multi-block-tall post, arm(s)
+  and lamp(s) are emitted box-for-box from the original TESR. Rotation is set
+  from player yaw on placement. The block emits light directly (luminance 15)
+  instead of the original's multi-block `light_source` placement.
 
 ## TODO(ka) — deferred behavior
 
@@ -49,9 +57,14 @@ the short commit SHA.
   lights / signs / crossing gates / wig wags. Not yet implemented.
 - **VoxelShape hitboxes.** Decorative blocks (cone, drum, etc.) currently use a
   full-cube selection/collision box. The original supplied custom shapes.
-- **Block entities + renderers.** ~32 TileEntities and their renderers
-  (signs, street lights, traffic lights, crossing gates, wig wags, bells) are
-  not ported; their blocks are registered as static blocks for now.
+- **Block entities + renderers.** Street lights are ported (see above). The
+  remaining ~30 TileEntities and renderers (signs, traffic lights, crossing
+  gates, wig wags, bells) are not ported; their blocks are registered as
+  static blocks for now. `street_sign`, `street_light_*` and the traffic
+  lights are the blocks that still render as a flat item icon — `street_sign`
+  needs the sign-pack data system + GUI; the traffic lights have real 3D
+  models and only lack rotation/animation. `TcBoxRenderer` is a reusable
+  box-drawing helper for porting the rest.
 - **Automation.** Traffic-light control-box state machine, its `ScreenHandler`
   /`Screen` GUI, traffic sensors, pedestrian buttons, crossing-gate animation
   and bells are not ported. Crossing/relay automation is to be redstone-driven.

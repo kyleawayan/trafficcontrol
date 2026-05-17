@@ -1,6 +1,51 @@
 {
   "variants": {
-    "": {
+    "rotation=0": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=1": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=2": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=3": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=4": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=5": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=6": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=7": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=8": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=9": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=10": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=11": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=12": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=13": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=14": {
+      "model": "trafficcontrol:block/street_light_double"
+    },
+    "rotation=15": {
       "model": "trafficcontrol:block/street_light_double"
     }
   }

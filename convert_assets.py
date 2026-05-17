@@ -58,6 +58,12 @@ for sub in os.listdir(os.path.join(SRC, "textures")):
     else:
         os.makedirs(tex_dst, exist_ok=True)
         shutil.copy(src_sub, os.path.join(tex_dst, dst_name))
+
+# Texture file names must be lowercase (resource-pack path requirement).
+for root, _, files in os.walk(tex_dst):
+    for fn in files:
+        if fn != fn.lower():
+            os.rename(os.path.join(root, fn), os.path.join(root, fn.lower()))
 if os.path.exists(os.path.join(SRC, "sounds.json")):
     shutil.copy(os.path.join(SRC, "sounds.json"), os.path.join(DST, "sounds.json"))
 

@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.clussmanproductions.trafficcontrol.block.StreetLightBlock;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
@@ -47,12 +49,23 @@ public final class ModBlocks {
 
 	public static void register() {
 		for (String name : NAMES) {
-			Block block = new Block(settingsFor(name));
+			Block block = createBlock(name);
 			Identifier id = new Identifier(TrafficControl.MOD_ID, name);
 			Registry.register(Registries.BLOCK, id, block);
 			Registry.register(Registries.ITEM, id, new BlockItem(block, new Item.Settings()));
 			BLOCKS.add(block);
 			BY_NAME.put(name, block);
+		}
+	}
+
+	private static Block createBlock(String name) {
+		switch (name) {
+			case "street_light_single":
+				return new StreetLightBlock(settingsFor(name), false);
+			case "street_light_double":
+				return new StreetLightBlock(settingsFor(name), true);
+			default:
+				return new Block(settingsFor(name));
 		}
 	}
 
@@ -63,7 +76,8 @@ public final class ModBlocks {
 			.sounds(BlockSoundGroup.METAL)
 			.nonOpaque();
 		// light_source is the original mod's invisible illumination block.
-		if (name.equals("light_source") || name.equals("traffic_light_5_upper")) {
+		if (name.equals("light_source") || name.equals("traffic_light_5_upper")
+				|| name.equals("street_light_single") || name.equals("street_light_double")) {
 			settings.luminance(state -> 15);
 		}
 		return settings;
