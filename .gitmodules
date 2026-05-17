@@ -1,0 +1,6 @@
+[submodule "reference/fabric-example-mod"]
+	path = reference/fabric-example-mod
+	url = https://github.com/FabricMC/fabric-example-mod.git
+[submodule "reference/fabric-docs"]
+	path = reference/fabric-docs
+	url = https://github.com/FabricMC/fabric-docs.git
