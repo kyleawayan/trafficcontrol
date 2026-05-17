@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 public class CrossingGateBlockEntity extends BlockEntity {
 	private static final float RAISED = -60.0F;
 	private static final float LOWERED = 0.0F;
-	private static final int CLOSE_DELAY_TICKS = 80;
+	private static final int CLOSE_DELAY_TICKS = 15;
 
 	/** Installed by the client entrypoint to start/stop the motor sound. */
 	public static java.util.function.Consumer<CrossingGateBlockEntity> SOUND_HOOK = be -> {};
