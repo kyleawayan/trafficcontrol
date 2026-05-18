@@ -86,7 +86,12 @@ public class CrossingLampsBlock extends Block implements BlockEntityProvider {
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		updatePower(world, pos, state);
+		// onBlockAdded also fires for our own state changes (toggling LIT via
+		// setBlockState). Only re-evaluate redstone on a genuine placement,
+		// otherwise a relay-driven lamp would immediately reset itself.
+		if (!oldState.isOf(state.getBlock())) {
+			updatePower(world, pos, state);
+		}
 	}
 
 	@Override
