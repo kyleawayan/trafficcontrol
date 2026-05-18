@@ -22,10 +22,11 @@ public final class ModItemGroups {
 				return cone != null ? new ItemStack(cone) : new ItemStack(Items.STONE);
 			})
 			.entries((displayContext, entries) -> {
-				// The relay block has no item of its own (placed by the relay
-				// box item); skip blocks whose item is AIR.
+				// The relay block's item is the crossing_relay_box (in ITEMS);
+				// skip the block itself so it is not added to the tab twice.
+				var relay = ModBlocks.BY_NAME.get("crossing_relay_se");
 				ModBlocks.BLOCKS.stream()
-					.filter(block -> block.asItem() != Items.AIR)
+					.filter(block -> block != relay)
 					.forEach(entries::add);
 				ModItems.ITEMS.forEach(entries::add);
 			})
