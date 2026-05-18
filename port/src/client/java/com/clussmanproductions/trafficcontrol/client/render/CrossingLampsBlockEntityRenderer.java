@@ -61,19 +61,23 @@ public class CrossingLampsBlockEntityRenderer implements BlockEntityRenderer<Cro
 			vc.getBuffer(RenderLayer.getCutout()), state, brm.getModel(state),
 			1.0F, 1.0F, 1.0F, light, overlay);
 
+		// Left and right lamp pairs alternate while lit.
+		boolean leftLit = false;
+		boolean rightLit = false;
+		if (lit && be.getWorld() != null) {
+			boolean phase = (be.getWorld().getTime() / FLASH_TICKS) % 2 == 0;
+			leftLit = phase;
+			rightLit = !phase;
+		}
+
 		if (((CrossingLampsBlock) state.getBlock()).isOverhead()) {
-			// Overhead lamps: one lens per side, steady red while lit.
-			drawBulb(matrices, vc, lit, light, overlay, 9.9, 6.0, 12.0);
-			drawBulb(matrices, vc, lit, light, overlay, 9.9, 6.0, 4.7);
+			// Two lamps side by side on each of the south and north faces.
+			drawBulb(matrices, vc, leftLit, light, overlay, 0.9, 6.0, 12.0);
+			drawBulb(matrices, vc, leftLit, light, overlay, 0.9, 6.0, 2.7);
+			drawBulb(matrices, vc, rightLit, light, overlay, 9.9, 6.0, 12.0);
+			drawBulb(matrices, vc, rightLit, light, overlay, 9.9, 6.0, 2.7);
 		} else {
-			// Gate-mounted lamps: left and right pairs alternate.
-			boolean leftLit = false;
-			boolean rightLit = false;
-			if (lit && be.getWorld() != null) {
-				boolean phase = (be.getWorld().getTime() / FLASH_TICKS) % 2 == 0;
-				leftLit = phase;
-				rightLit = !phase;
-			}
+			// Gate-mounted lamps: left/right pairs, front and back.
 			drawBulb(matrices, vc, leftLit, light, overlay, 0.9, 10.0, 16.0);
 			drawBulb(matrices, vc, leftLit, light, overlay, 0.9, 10.0, -2.3);
 			drawBulb(matrices, vc, rightLit, light, overlay, 9.9, 10.0, 16.0);
