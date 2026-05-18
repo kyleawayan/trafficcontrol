@@ -3,6 +3,7 @@ package com.clussmanproductions.trafficcontrol;
 import com.clussmanproductions.trafficcontrol.block.entity.BellBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.CrossingGateBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.CrossingLampsBlockEntity;
+import com.clussmanproductions.trafficcontrol.block.entity.RelayBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.StreetLightBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.WigWagBlockEntity;
 
@@ -18,6 +19,7 @@ public final class ModBlockEntities {
 	public static BlockEntityType<WigWagBlockEntity> WIG_WAG;
 	public static BlockEntityType<CrossingGateBlockEntity> CROSSING_GATE;
 	public static BlockEntityType<CrossingLampsBlockEntity> LAMPS;
+	public static BlockEntityType<RelayBlockEntity> RELAY;
 	public static BlockEntityType<BellBlockEntity> BELL;
 
 	public static void register() {
@@ -41,6 +43,11 @@ public final class ModBlockEntities {
 			BlockEntityType.Builder.<CrossingLampsBlockEntity>create(
 				CrossingLampsBlockEntity::new,
 				ModBlocks.BY_NAME.get("crossing_gate_lamps")));
+
+		RELAY = register("relay",
+			BlockEntityType.Builder.<RelayBlockEntity>create(
+				RelayBlockEntity::new,
+				ModBlocks.BY_NAME.get("crossing_relay_se")));
 
 		BELL = register("bell",
 			BlockEntityType.Builder.<BellBlockEntity>create(

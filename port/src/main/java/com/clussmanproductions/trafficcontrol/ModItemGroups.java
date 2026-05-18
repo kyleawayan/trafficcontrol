@@ -22,7 +22,11 @@ public final class ModItemGroups {
 				return cone != null ? new ItemStack(cone) : new ItemStack(Items.STONE);
 			})
 			.entries((displayContext, entries) -> {
-				ModBlocks.BLOCKS.forEach(entries::add);
+				// The relay block has no item of its own (placed by the relay
+				// box item); skip blocks whose item is AIR.
+				ModBlocks.BLOCKS.stream()
+					.filter(block -> block.asItem() != Items.AIR)
+					.forEach(entries::add);
 				ModItems.ITEMS.forEach(entries::add);
 			})
 			.build();

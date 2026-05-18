@@ -8,6 +8,7 @@ import java.util.Map;
 import com.clussmanproductions.trafficcontrol.block.BellBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingGateBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingLampsBlock;
+import com.clussmanproductions.trafficcontrol.block.RelayBlock;
 import com.clussmanproductions.trafficcontrol.block.StreetLightBlock;
 import com.clussmanproductions.trafficcontrol.block.TcHorizontalBlock;
 import com.clussmanproductions.trafficcontrol.block.WigWagBlock;
@@ -57,7 +58,11 @@ public final class ModBlocks {
 			Block block = createBlock(name);
 			Identifier id = new Identifier(TrafficControl.MOD_ID, name);
 			Registry.register(Registries.BLOCK, id, block);
-			Registry.register(Registries.ITEM, id, new BlockItem(block, new Item.Settings()));
+			// The relay is placed by the crossing_relay_box item (registered in
+			// ModItems); it gets no auto-item of its own.
+			if (!name.equals("crossing_relay_se")) {
+				Registry.register(Registries.ITEM, id, new BlockItem(block, new Item.Settings()));
+			}
 			BLOCKS.add(block);
 			BY_NAME.put(name, block);
 		}
@@ -73,6 +78,8 @@ public final class ModBlocks {
 				return new CrossingGateBlock(settingsFor(name));
 			case "crossing_gate_lamps":
 				return new CrossingLampsBlock(settingsFor(name));
+			case "crossing_relay_se":
+				return new RelayBlock(settingsFor(name));
 			case "wig_wag":
 				return new WigWagBlock(settingsFor(name));
 			case "wch_bell":

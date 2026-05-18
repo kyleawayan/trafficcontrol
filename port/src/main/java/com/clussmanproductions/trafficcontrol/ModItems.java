@@ -3,14 +3,18 @@ package com.clussmanproductions.trafficcontrol;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.clussmanproductions.trafficcontrol.item.TunerItem;
+
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 /**
- * Registers the non-block items. For v1 every item is a plain {@link Item};
- * the original capability/automation behavior is tracked as TODO(ka).
+ * Registers the non-block items. Most are plain {@link Item}s; the relay box is
+ * the {@link BlockItem} that places the relay block, and the tuner links
+ * crossing components to a relay.
  */
 public final class ModItems {
 	private ModItems() {}
@@ -27,9 +31,20 @@ public final class ModItems {
 
 	public static void register() {
 		for (String name : NAMES) {
-			Item item = new Item(new Item.Settings());
+			Item item = createItem(name);
 			Registry.register(Registries.ITEM, new Identifier(TrafficControl.MOD_ID, name), item);
 			ITEMS.add(item);
+		}
+	}
+
+	private static Item createItem(String name) {
+		switch (name) {
+			case "crossing_relay_box":
+				return new BlockItem(ModBlocks.BY_NAME.get("crossing_relay_se"), new Item.Settings());
+			case "crossing_relay_tuner":
+				return new TunerItem(new Item.Settings().maxCount(1));
+			default:
+				return new Item(new Item.Settings());
 		}
 	}
 }
