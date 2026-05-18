@@ -15,6 +15,7 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
@@ -28,7 +29,15 @@ public class CrossingLampsBlock extends Block implements BlockEntityProvider {
 	public static final IntProperty ROTATION = IntProperty.of("rotation", 0, 15);
 	public static final BooleanProperty LIT = BooleanProperty.of("lit");
 
-	private static final VoxelShape SHAPE = createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
+	private static final VoxelShape POLE = createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
+	// Generous outline shapes so the protruding lamp heads can be clicked
+	// (e.g. to link them to a relay with the tuner), not just the thin pole.
+	private static final VoxelShape GATE_LAMPS_OUTLINE = VoxelShapes.union(
+		POLE, createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0));
+	private static final VoxelShape OVERHEAD_PLATFORM = createCuboidShape(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
+	private static final VoxelShape OVERHEAD_OUTLINE = VoxelShapes.union(
+		OVERHEAD_PLATFORM, POLE, createCuboidShape(0.0, 4.0, 0.0, 16.0, 13.0, 16.0));
+	private static final VoxelShape OVERHEAD_COLLISION = VoxelShapes.union(OVERHEAD_PLATFORM, POLE);
 
 	/** Overhead lamps hang their bulbs differently from gate-mounted lamps. */
 	private final boolean overhead;
@@ -57,12 +66,12 @@ public class CrossingLampsBlock extends Block implements BlockEntityProvider {
 
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
+		return overhead ? OVERHEAD_OUTLINE : GATE_LAMPS_OUTLINE;
 	}
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
+		return overhead ? OVERHEAD_COLLISION : POLE;
 	}
 
 	@Override
