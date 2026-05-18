@@ -77,7 +77,9 @@ public final class ModBlocks {
 			case "crossing_gate_gate":
 				return new CrossingGateBlock(settingsFor(name));
 			case "crossing_gate_lamps":
-				return new CrossingLampsBlock(settingsFor(name));
+				return new CrossingLampsBlock(settingsFor(name), false);
+			case "overhead_lamps":
+				return new CrossingLampsBlock(settingsFor(name), true);
 			case "crossing_relay_se":
 				return new RelayBlock(settingsFor(name));
 			case "wig_wag":
@@ -107,7 +109,7 @@ public final class ModBlocks {
 			settings.luminance(state -> 15);
 		}
 		// Crossing lamps glow only while lit (powered).
-		if (name.equals("crossing_gate_lamps")) {
+		if (name.equals("crossing_gate_lamps") || name.equals("overhead_lamps")) {
 			settings.luminance(state -> state.get(CrossingLampsBlock.LIT) ? 15 : 0);
 		}
 		return settings;

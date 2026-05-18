@@ -1,19 +1,100 @@
 {
   "variants": {
-    "facing=north": {
+    "lit=false,rotation=0": {
       "model": "trafficcontrol:block/overhead_lamps"
     },
-    "facing=east": {
-      "model": "trafficcontrol:block/overhead_lamps",
-      "y": 90
+    "lit=true,rotation=0": {
+      "model": "trafficcontrol:block/overhead_lamps"
     },
-    "facing=south": {
-      "model": "trafficcontrol:block/overhead_lamps",
-      "y": 180
+    "lit=false,rotation=1": {
+      "model": "trafficcontrol:block/overhead_lamps"
     },
-    "facing=west": {
-      "model": "trafficcontrol:block/overhead_lamps",
-      "y": 270
+    "lit=true,rotation=1": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=2": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=2": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=3": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=3": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=4": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=4": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=5": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=5": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=6": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=6": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=7": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=7": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=8": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=8": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=9": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=9": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=10": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=10": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=11": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=11": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=12": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=12": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=13": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=13": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=14": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=14": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=false,rotation=15": {
+      "model": "trafficcontrol:block/overhead_lamps"
+    },
+    "lit=true,rotation=15": {
+      "model": "trafficcontrol:block/overhead_lamps"
     }
   }
 }

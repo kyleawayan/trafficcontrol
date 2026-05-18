@@ -42,7 +42,8 @@ public final class ModBlockEntities {
 		LAMPS = register("lamps",
 			BlockEntityType.Builder.<CrossingLampsBlockEntity>create(
 				CrossingLampsBlockEntity::new,
-				ModBlocks.BY_NAME.get("crossing_gate_lamps")));
+				ModBlocks.BY_NAME.get("crossing_gate_lamps"),
+				ModBlocks.BY_NAME.get("overhead_lamps")));
 
 		RELAY = register("relay",
 			BlockEntityType.Builder.<RelayBlockEntity>create(

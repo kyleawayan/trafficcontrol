@@ -30,9 +30,17 @@ public class CrossingLampsBlock extends Block implements BlockEntityProvider {
 
 	private static final VoxelShape SHAPE = createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
 
-	public CrossingLampsBlock(Settings settings) {
+	/** Overhead lamps hang their bulbs differently from gate-mounted lamps. */
+	private final boolean overhead;
+
+	public CrossingLampsBlock(Settings settings, boolean overhead) {
 		super(settings);
+		this.overhead = overhead;
 		setDefaultState(getDefaultState().with(ROTATION, 0).with(LIT, false));
+	}
+
+	public boolean isOverhead() {
+		return overhead;
 	}
 
 	@Override
