@@ -89,7 +89,11 @@ public class CrossingLampsBlock extends Block implements BlockEntityProvider {
 	public static void setLit(World world, BlockPos pos, boolean lit) {
 		BlockState state = world.getBlockState(pos);
 		if (state.getBlock() instanceof CrossingLampsBlock && state.get(LIT) != lit) {
-			world.setBlockState(pos, state.with(LIT, lit), Block.NOTIFY_ALL);
+			// NOTIFY_LISTENERS only: syncs the change to clients and updates
+			// light without poking neighbours. Notifying neighbours would make
+			// adjacent crossing components re-check their own redstone and
+			// switch off, fighting a relay that is driving the whole crossing.
+			world.setBlockState(pos, state.with(LIT, lit), Block.NOTIFY_LISTENERS);
 		}
 	}
 }
