@@ -3,6 +3,7 @@ package com.clussmanproductions.trafficcontrol.client;
 import com.clussmanproductions.trafficcontrol.ModBlockEntities;
 import com.clussmanproductions.trafficcontrol.ModBlocks;
 import com.clussmanproductions.trafficcontrol.client.render.CrossingGateBlockEntityRenderer;
+import com.clussmanproductions.trafficcontrol.client.render.CrossingLampsBlockEntityRenderer;
 import com.clussmanproductions.trafficcontrol.client.render.StreetLightBlockEntityRenderer;
 import com.clussmanproductions.trafficcontrol.client.render.WigWagBlockEntityRenderer;
 import com.clussmanproductions.trafficcontrol.client.sound.TcClientSounds;
@@ -28,6 +29,8 @@ public final class ModRenderers {
 			ModBlockEntities.WIG_WAG, WigWagBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(
 			ModBlockEntities.CROSSING_GATE, CrossingGateBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(
+			ModBlockEntities.LAMPS, CrossingLampsBlockEntityRenderer::new);
 
 		TcClientSounds.register();
 	}

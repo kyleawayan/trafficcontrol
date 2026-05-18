@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.clussmanproductions.trafficcontrol.block.BellBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingGateBlock;
+import com.clussmanproductions.trafficcontrol.block.CrossingLampsBlock;
 import com.clussmanproductions.trafficcontrol.block.StreetLightBlock;
 import com.clussmanproductions.trafficcontrol.block.TcHorizontalBlock;
 import com.clussmanproductions.trafficcontrol.block.WigWagBlock;
@@ -70,6 +71,8 @@ public final class ModBlocks {
 				return new StreetLightBlock(settingsFor(name), true);
 			case "crossing_gate_gate":
 				return new CrossingGateBlock(settingsFor(name));
+			case "crossing_gate_lamps":
+				return new CrossingLampsBlock(settingsFor(name));
 			case "wig_wag":
 				return new WigWagBlock(settingsFor(name));
 			case "wch_bell":
@@ -95,6 +98,10 @@ public final class ModBlocks {
 		if (name.equals("light_source") || name.equals("traffic_light_5_upper")
 				|| name.equals("street_light_single") || name.equals("street_light_double")) {
 			settings.luminance(state -> 15);
+		}
+		// Crossing lamps glow only while lit (powered).
+		if (name.equals("crossing_gate_lamps")) {
+			settings.luminance(state -> state.get(CrossingLampsBlock.LIT) ? 15 : 0);
 		}
 		return settings;
 	}
