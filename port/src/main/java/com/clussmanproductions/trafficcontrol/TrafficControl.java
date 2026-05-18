@@ -14,6 +14,7 @@ public class TrafficControl implements ModInitializer {
 		ModBlocks.register();
 		ModItems.register();
 		ModBlockEntities.register();
+		ModScreens.register();
 		ModItemGroups.register();
 		LOGGER.info("Traffic Control initialized");
 	}

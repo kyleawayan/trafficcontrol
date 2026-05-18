@@ -25,9 +25,6 @@ public class CrossingGateBlockEntityRenderer implements BlockEntityRenderer<Cros
 	private static final RenderLayer GATE = RenderLayer.getEntityCutout(
 		new Identifier("trafficcontrol", "textures/block/gate.png"));
 
-	/** Default gate length, in blocks (the original was GUI-configurable). */
-	private static final float GATE_LENGTH = 4.0F;
-
 	private static final float[][] CROSS = {
 		TcBoxRenderer.uv(0, 0, 1, 1), TcBoxRenderer.uv(0, 0, 8, 1),
 		TcBoxRenderer.uv(0, 0, 1, 1), TcBoxRenderer.uv(0, 0, 8, 1),
@@ -93,9 +90,10 @@ public class CrossingGateBlockEntityRenderer implements BlockEntityRenderer<Cros
 		TcBoxRenderer.box(matrices, vc, METAL, light, overlay, 3.5, -3.5, 4, 10, 6, -1, CONNECTOR);
 		TcBoxRenderer.box(matrices, vc, METAL, light, overlay, 3.5, -3.5, -3, 10, 6, -1, CONNECTOR);
 
-		// Gate arm.
+		// Gate arm. Its length is configurable through the gate's screen.
+		float gateLength = be.getGateLength();
 		TcBoxRenderer.box(matrices, vc, GATE, light, overlay,
-			-(GATE_LENGTH * 16) - 13, -9.5, 0.5, (GATE_LENGTH * 16) + 5.5, 2, -1, GATE_FACES);
+			-(gateLength * 16) - 13, -9.5, 0.5, (gateLength * 16) + 5.5, 2, -1, GATE_FACES);
 
 		matrices.pop();
 	}
