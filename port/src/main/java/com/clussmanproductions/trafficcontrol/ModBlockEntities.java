@@ -4,6 +4,7 @@ import com.clussmanproductions.trafficcontrol.block.entity.BellBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.CrossingGateBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.CrossingLampsBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.RelayBlockEntity;
+import com.clussmanproductions.trafficcontrol.block.entity.ShuntBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.StreetLightBlockEntity;
 import com.clussmanproductions.trafficcontrol.block.entity.WigWagBlockEntity;
 
@@ -21,6 +22,7 @@ public final class ModBlockEntities {
 	public static BlockEntityType<CrossingLampsBlockEntity> LAMPS;
 	public static BlockEntityType<RelayBlockEntity> RELAY;
 	public static BlockEntityType<BellBlockEntity> BELL;
+	public static BlockEntityType<ShuntBlockEntity> SHUNT;
 
 	public static void register() {
 		STREET_LIGHT = register("street_light",
@@ -57,6 +59,12 @@ public final class ModBlockEntities {
 				ModBlocks.BY_NAME.get("wch_mechanical_bell"),
 				ModBlocks.BY_NAME.get("safetran_type_3"),
 				ModBlocks.BY_NAME.get("safetran_mechanical")));
+
+		SHUNT = register("shunt",
+			BlockEntityType.Builder.<ShuntBlockEntity>create(
+				ShuntBlockEntity::new,
+				ModBlocks.BY_NAME.get("shunt_border"),
+				ModBlocks.BY_NAME.get("shunt_island")));
 	}
 
 	private static <T extends net.minecraft.block.entity.BlockEntity> BlockEntityType<T> register(

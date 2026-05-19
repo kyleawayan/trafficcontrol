@@ -9,6 +9,7 @@ import com.clussmanproductions.trafficcontrol.block.BellBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingGateBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingLampsBlock;
 import com.clussmanproductions.trafficcontrol.block.RelayBlock;
+import com.clussmanproductions.trafficcontrol.block.ShuntBlock;
 import com.clussmanproductions.trafficcontrol.block.StreetLightBlock;
 import com.clussmanproductions.trafficcontrol.block.TcHorizontalBlock;
 import com.clussmanproductions.trafficcontrol.block.WigWagBlock;
@@ -82,6 +83,9 @@ public final class ModBlocks {
 				return new CrossingLampsBlock(settingsFor(name), true);
 			case "crossing_relay_se":
 				return new RelayBlock(settingsFor(name));
+			case "shunt_border":
+			case "shunt_island":
+				return new ShuntBlock(settingsFor(name));
 			case "wig_wag":
 				return new WigWagBlock(settingsFor(name));
 			case "wch_bell":

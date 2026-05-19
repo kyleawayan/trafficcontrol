@@ -6,5 +6,6 @@ public class TrafficControlClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ModRenderers.register();
+		ShuntClientNetworking.register();
 	}
 }
