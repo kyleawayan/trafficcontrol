@@ -4,3 +4,6 @@
 [submodule "reference/fabric-docs"]
 	path = reference/fabric-docs
 	url = https://github.com/FabricMC/fabric-docs.git
+[submodule "reference/minecraft-transit-railway"]
+	path = reference/minecraft-transit-railway
+	url = https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway.git

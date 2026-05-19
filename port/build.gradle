@@ -11,6 +11,13 @@ base {
 }
 
 repositories {
+	maven {
+		name = 'Modrinth'
+		url = 'https://api.modrinth.com/maven/'
+		content {
+			includeGroup 'maven.modrinth'
+		}
+	}
 }
 
 loom {
@@ -29,6 +36,14 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// Minecraft Transit Railway — soft dependency. Plain compileOnly (not
+	// modCompileOnly): MTR's jar was built with a newer Loom than this project
+	// uses, so routing it through Loom's mod-dependency remapping fails. We only
+	// call MTR's own org.mtr.* classes (never remapped), so a raw compileOnly jar
+	// is enough to compile against; it is never bundled and never required at
+	// runtime, so the mod still runs without MTR installed.
+	compileOnly "maven.modrinth:minecraft-transit-railway:FABRIC-4.0.4+1.20.1"
 }
 
 processResources {
