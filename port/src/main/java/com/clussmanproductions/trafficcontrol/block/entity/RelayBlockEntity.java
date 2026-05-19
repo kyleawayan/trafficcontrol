@@ -7,6 +7,7 @@ import com.clussmanproductions.trafficcontrol.ModBlockEntities;
 import com.clussmanproductions.trafficcontrol.block.BellBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingGateBlock;
 import com.clussmanproductions.trafficcontrol.block.CrossingLampsBlock;
+import com.clussmanproductions.trafficcontrol.block.ShuntBlock;
 import com.clussmanproductions.trafficcontrol.block.WigWagBlock;
 
 import net.minecraft.block.Block;
@@ -18,19 +19,26 @@ import net.minecraft.world.World;
 
 /**
  * Stores the components linked to a crossing relay and re-asserts their state.
- * While {@code powered}, a one-second heartbeat keeps every linked gate closed,
- * bell ringing, lamp flashing and wig wag swinging; when power drops they are
- * all reset. Links are added and removed with the tuner.
+ * The relay is powered when it receives redstone power <em>or</em> when any
+ * linked train shunt detects an MTR train; while powered, a one-second
+ * heartbeat keeps every linked gate closed, bell ringing, lamp flashing and
+ * wig wag swinging; when power drops they are all reset. Links are added and
+ * removed with the tuner.
+ *
+ * <p>Gates, lamps, bells and wig wags are driven <em>outputs</em>; shunts are
+ * trigger <em>inputs</em> — they are polled, never driven.
  */
 public class RelayBlockEntity extends BlockEntity {
 	private static final int HEARTBEAT_TICKS = 20;
 
 	private boolean powered;
+	private boolean redstonePowered;
 	private int heartbeat;
 	private final List<BlockPos> gates = new ArrayList<>();
 	private final List<BlockPos> lamps = new ArrayList<>();
 	private final List<BlockPos> bells = new ArrayList<>();
 	private final List<BlockPos> wigWags = new ArrayList<>();
+	private final List<BlockPos> shunts = new ArrayList<>();
 
 	public RelayBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.RELAY, pos, state);
@@ -40,16 +48,48 @@ public class RelayBlockEntity extends BlockEntity {
 		return powered;
 	}
 
-	public void setPowered(boolean powered) {
-		if (powered == this.powered) {
+	/** Sets whether the relay block is currently receiving redstone power. */
+	public void setRedstonePowered(boolean redstonePowered) {
+		if (redstonePowered == this.redstonePowered) {
 			return;
 		}
-		this.powered = powered;
+		this.redstonePowered = redstonePowered;
+		markDirty();
+		recomputePower();
+	}
+
+	/**
+	 * Recomputes the relay's effective power from redstone and linked shunts,
+	 * driving the linked components when it changes.
+	 */
+	private void recomputePower() {
+		boolean effective = redstonePowered || anyShuntTriggered();
+		if (effective == powered) {
+			return;
+		}
+		powered = effective;
 		markDirty();
 		driveAll();
 	}
 
+	/** True if any linked shunt currently detects a train; prunes dead links. */
+	private boolean anyShuntTriggered() {
+		if (world == null) {
+			return false;
+		}
+		boolean triggered = false;
+		shunts.removeIf(p -> !(world.getBlockState(p).getBlock() instanceof ShuntBlock));
+		for (BlockPos p : shunts) {
+			if (world.getBlockEntity(p) instanceof ShuntBlockEntity shunt && shunt.isTrainDetected()) {
+				triggered = true;
+			}
+		}
+		return triggered;
+	}
+
 	public static void serverTick(World world, BlockPos pos, BlockState state, RelayBlockEntity be) {
+		// Poll linked shunts every tick so the crossing reacts promptly.
+		be.recomputePower();
 		if (++be.heartbeat < HEARTBEAT_TICKS) {
 			return;
 		}
@@ -81,6 +121,9 @@ public class RelayBlockEntity extends BlockEntity {
 		} else if (block instanceof WigWagBlock) {
 			list = wigWags;
 			label = "wig wag";
+		} else if (block instanceof ShuntBlock) {
+			list = shunts;
+			label = "train shunt";
 		} else {
 			return null;
 		}
@@ -94,6 +137,7 @@ public class RelayBlockEntity extends BlockEntity {
 		}
 		markDirty();
 		driveAll();
+		recomputePower();
 		return (linked ? "Linked " : "Unlinked ") + label
 			+ (linked ? " to" : " from") + " relay";
 	}
@@ -154,19 +198,23 @@ public class RelayBlockEntity extends BlockEntity {
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.putBoolean("powered", powered);
+		nbt.putBoolean("redstonePowered", redstonePowered);
 		nbt.putIntArray("gates", toArray(gates));
 		nbt.putIntArray("lamps", toArray(lamps));
 		nbt.putIntArray("bells", toArray(bells));
 		nbt.putIntArray("wigwags", toArray(wigWags));
+		nbt.putIntArray("shunts", toArray(shunts));
 	}
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		powered = nbt.getBoolean("powered");
+		redstonePowered = nbt.getBoolean("redstonePowered");
 		fromArray(nbt.getIntArray("gates"), gates);
 		fromArray(nbt.getIntArray("lamps"), lamps);
 		fromArray(nbt.getIntArray("bells"), bells);
 		fromArray(nbt.getIntArray("wigwags"), wigWags);
+		fromArray(nbt.getIntArray("shunts"), shunts);
 	}
 }

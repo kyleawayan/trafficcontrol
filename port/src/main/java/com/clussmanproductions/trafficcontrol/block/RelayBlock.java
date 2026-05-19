@@ -73,7 +73,7 @@ public class RelayBlock extends Block implements BlockEntityProvider {
 			return;
 		}
 		if (world.getBlockEntity(pos) instanceof RelayBlockEntity be) {
-			be.setPowered(world.isReceivingRedstonePower(pos));
+			be.setRedstonePowered(world.isReceivingRedstonePower(pos));
 		}
 	}
 
