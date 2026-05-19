@@ -1,10 +1,11 @@
-# Builds the Fabric port jar on every push to the working branch.
+# Builds the Fabric port jar on every push to a working branch.
 name: build
 
 on:
   push:
     branches:
       - claude/traffic-control-fabric-rewrite-rcf0S
+      - claude/mtr-shunt-integration-WCFDh
   workflow_dispatch:
 
 jobs:
