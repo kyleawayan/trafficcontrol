@@ -139,13 +139,46 @@ tuner, right-click the relay then each component; power the relay with a lever
   under `port/src/main/resources/data/trafficcontrol/recipes/`. The remaining
   1.12-format recipes (metadata items, `forge:ore_dict`) are not yet converted.
 
+## MTR shunt integration
+
+The shunt blocks (`shunt_border`, `shunt_island`) detect Minecraft Transit
+Railway (MTR) trains and trigger a crossing — the MTR-era replacement for the
+original mod's ImmersiveRailroading detection.
+
+- **`ShuntBlock` / `ShuntBlockEntity`** — a shunt is a trigger *input* to a
+  relay (gates/lamps/bells/wig wags are the relay's driven *outputs*). Link a
+  shunt to a relay with the tuner exactly like any other component
+  (`RelayBlockEntity.toggleLink` recognises `ShuntBlock`). While any linked
+  shunt detects a train the relay is powered, just as redstone power does;
+  effective relay power is `redstone OR any-linked-shunt`. Both shunt variants
+  behave identically as proximity sensors — the original's border/island
+  directional distinction was not reimplemented.
+- **Detection is client-side.** MTR 4.x keeps its live train list
+  (`MinecraftClientData.vehicles`) on the client only, with no public
+  server-side query — MTR's own redstone train sensors are client-driven for
+  the same reason. `ShuntBlockEntity.clientTick` checks
+  `MtrTrainDetector.isTrainNear` and sends a `shunt_detection` C2S packet when
+  the result changes; the server applies it to the shunt and times stale
+  detections out (`DETECTION_TIMEOUT`) in case the detecting client unloads
+  the chunk. Consequence: a shunt only fires while a player is loading its
+  chunk — the same limitation as MTR's own sensors.
+- **Soft dependency.** MTR is `compileOnly` (not bundled, not required at
+  runtime); `fabric.mod.json` only `suggests` it. All MTR API use is isolated
+  in `compat/MtrTrainDetector`, called only behind a `TrafficControl.MTR_LOADED`
+  guard, so the JVM never links MTR classes when MTR is absent — shunts then
+  stay inert. (`compileOnly`, not `modCompileOnly`: MTR's jar was built with a
+  newer Loom than this project pins, so Loom's mod-dependency remapping
+  rejects it; we only call MTR's own `org.mtr.*` classes, which are never
+  remapped, so a raw `compileOnly` jar compiles fine.)
+- MTR source is vendored as the `reference/minecraft-transit-railway`
+  submodule for API reference; the build resolves MTR from the Modrinth Maven.
+
 ## Dropped (per user — no third-party mod integration)
 
-- ImmersiveRailroading scanner / train detection. Crossing/relay automation is
-  to be redstone-driven instead.
+- ImmersiveRailroading scanner / train detection. The crossing/relay automation
+  is redstone-driven; MTR train detection is wired through the shunt blocks
+  (see above) instead of IR.
 - OpenComputers card driver and the traffic-light-card item.
-- Shunt blocks (`shunt_island`, `shunt_border`) were IR-only; they remain as
-  inert decorative blocks.
 
 ## Final Status
 
