@@ -84,8 +84,9 @@ public class CrossingGateScreen extends HandledScreen<CrossingGateScreenHandler>
 
 	@Override
 	protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-		context.fill(x, y, x + backgroundWidth, y + backgroundHeight, 0xF0202020);
-		context.drawBorder(x, y, backgroundWidth, backgroundHeight, 0xFF606060);
+		// Outer rectangle acts as a 1px border around the darker panel.
+		context.fill(x, y, x + backgroundWidth, y + backgroundHeight, 0xFF606060);
+		context.fill(x + 1, y + 1, x + backgroundWidth - 1, y + backgroundHeight - 1, 0xF0202020);
 	}
 
 	@Override
@@ -97,7 +98,7 @@ public class CrossingGateScreen extends HandledScreen<CrossingGateScreenHandler>
 
 	@Override
 	public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-		renderBackground(context, mouseX, mouseY, delta);
+		renderBackground(context);
 		super.render(context, mouseX, mouseY, delta);
 		drawMouseoverTooltip(context, mouseX, mouseY);
 	}

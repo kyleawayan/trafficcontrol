@@ -1,15 +1,19 @@
-# Traffic Control — Fabric 1.20.4 Port Notes
+# Traffic Control — Fabric 1.20.1 Port Notes
 
-This file tracks the Fabric 1.20.4 rewrite of CSX8600's Traffic Control mod
+This file tracks the Fabric 1.20.1 rewrite of CSX8600's Traffic Control mod
 (originally Minecraft 1.12.2 Forge). The 1.12.2 source at the repo root is
 read-only reference. The Fabric port lives in `./port/`.
+
+The port was first built against 1.20.4 and later retargeted to 1.20.1; the
+only API difference that affected code was `Screen.renderBackground`, which
+takes a single argument on 1.20.1.
 
 `TODO(ka):` marks deferred work. `BLOCKED:` marks work blocked by the environment.
 
 ## Environment
 
 - Container has JDK 21; the port compiles/runs with `--release 17` (Java 17
-  bytecode), keeping it 1.20.4-compatible.
+  bytecode), keeping it 1.20.1-compatible.
 - Network access to `maven.fabricmc.net`, `meta.fabricmc.net`,
   `libraries.minecraft.net`, `piston-meta.mojang.com`, `repo1.maven.org` and
   `services.gradle.org` works — local `./gradlew build` and `runClient` both run.
@@ -18,8 +22,8 @@ read-only reference. The Fabric port lives in `./port/`.
 
 ## Versions pinned
 
-- `minecraft_version=1.20.4`, `yarn_mappings=1.20.4+build.3`,
-  `loader_version=0.15.7`, `fabric_version=0.97.2+1.20.4`,
+- `minecraft_version=1.20.1`, `yarn_mappings=1.20.1+build.10`,
+  `loader_version=0.16.10`, `fabric_version=0.92.9+1.20.1`,
   `loom_version=1.6-SNAPSHOT`, Gradle 8.8.
 - Mod id `trafficcontrol`, group `com.clussmanproductions.trafficcontrol`.
 
@@ -33,9 +37,9 @@ the short commit SHA.
 ## v1 status — works
 
 - Fabric scaffold: `./gradlew build` produces `port/build/libs/trafficcontrol-1.0.0.jar`;
-  `./gradlew runClient` launches Minecraft 1.20.4.
+  `./gradlew runClient` launches Minecraft 1.20.1.
 - All assets converted: 80 block models, 83 item models, textures, sounds,
-  `sounds.json`, `en_us.json` (from `en_us.lang`), `pack.mcmeta` (`pack_format: 18`).
+  `sounds.json`, `en_us.json` (from `en_us.lang`), `pack.mcmeta` (`pack_format: 15`).
 - 52 blocks registered (`ModBlocks`) as plain static blocks with their converted
   models, each with a `BlockItem`.
 - 11 items registered (`ModItems`) as plain items.
@@ -131,7 +135,7 @@ tuner, right-click the relay then each component; power the relay with a lever
   dye colors — port as 16 blocks or a color property.
 - **traffic_light_bulb** is a single item in v1; the original had 16 bulb
   variants used in traffic-light assembly.
-- **Recipes.** A representative subset is converted to 1.20.4 data recipes
+- **Recipes.** A representative subset is converted to 1.20.1 data recipes
   under `port/src/main/resources/data/trafficcontrol/recipes/`. The remaining
   1.12-format recipes (metadata items, `forge:ore_dict`) are not yet converted.
 
